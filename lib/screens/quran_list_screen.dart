@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:muslim_task/screens/cubit/quran_cubit.dart';
 import 'package:muslim_task/screens/widget/quran_item_widget.dart';
 
-class QuranListScreen extends StatelessWidget {
+class QuranListScreen extends StatefulWidget {
   const QuranListScreen({super.key});
 
+  @override
+  State<QuranListScreen> createState() => _QuranListScreenState();
+}
+
+class _QuranListScreenState extends State<QuranListScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -14,6 +21,9 @@ class QuranListScreen extends StatelessWidget {
         slivers: [
           SliverToBoxAdapter(
             child: TextFormField(
+              onChanged: (value) {
+                context.read<QuranCubit>().searchQuranSurah(value);
+              },
               decoration: const InputDecoration(
                 hintText: 'ابحث عما تريد...',
                 suffixIcon: Icon(Icons.search),

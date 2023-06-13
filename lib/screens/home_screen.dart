@@ -4,8 +4,7 @@ import 'package:muslim_task/core/utils/app_assets.dart';
 import 'package:muslim_task/screens/quran_list_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
+  const HomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
