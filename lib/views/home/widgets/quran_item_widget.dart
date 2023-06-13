@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:muslim_task/screens/cubit/quran_cubit.dart';
+import 'package:muslim_task/views/cubit/quran_cubit.dart';
+import 'package:muslim_task/views/quran_details/quran_details_screen.dart';
 
-import '../../core/utils/app_assets.dart';
-import '../../core/utils/constant.dart';
-import '../../core/utils/style_manager.dart';
+import '../../../core/utils/app_assets.dart';
+import '../../../core/utils/constant.dart';
+import '../../../core/utils/style_manager.dart';
 
 class QuranItemWidget extends StatefulWidget {
   const QuranItemWidget({
@@ -30,6 +31,23 @@ class _QuranItemWidgetState extends State<QuranItemWidget> {
                 color: Colors.white,
                 elevation: 0.0,
                 child: ListTile(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return QuranDetailsScreen(
+                            id: int.parse(listOfSurahInfo[index]['surah']) - 1,
+                          );
+                        },
+                        settings: RouteSettings(
+                          arguments: {
+                            'index': index,
+                          },
+                        ),
+                      ),
+                    );
+                  },
                   leading: Container(
                     height: 56.h,
                     width: 56.w,
@@ -51,7 +69,7 @@ class _QuranItemWidgetState extends State<QuranItemWidget> {
                       const Spacer(),
                       Text(
                         isSearch
-                            ? state.searchQuranList[index]['name']
+                            ? state.searchQuranList[index]['type']
                             : listOfSurahInfo[index]['type'],
                         style: getMediumStyle(
                           color: Theme.of(context).appBarTheme.backgroundColor!,
@@ -63,7 +81,7 @@ class _QuranItemWidgetState extends State<QuranItemWidget> {
                     children: [
                       Text(
                         isSearch
-                            ? state.searchQuranList[index]['name']
+                            ? 'رقم السورة : ${state.searchQuranList[index]['surah']}'
                             : 'رقم السورة : ${index + 1}',
                         style: getRegularStyle(
                           color: Theme.of(context).hintColor,
@@ -72,7 +90,8 @@ class _QuranItemWidgetState extends State<QuranItemWidget> {
                       const Spacer(),
                       Text(
                         isSearch
-                            ? state.searchQuranList[index]['name']
+                            ? 'عدد آياتها : ' +
+                                state.searchQuranList[index]['ayah']
                             : "عدد آياتها : ${listOfSurahInfo[index]['ayah']}",
                         style: getRegularStyle(
                           color: Theme.of(context).hintColor,
@@ -90,85 +109,5 @@ class _QuranItemWidgetState extends State<QuranItemWidget> {
         );
       },
     );
-  }
-}
-
-class ArabicSuraNumber extends StatelessWidget {
-  const ArabicSuraNumber({Key? key, required this.i}) : super(key: key);
-  final int i;
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      "${"\uFD3E${(i + 1).toString().toArabicNumbers}"}\uFD3F",
-      style: const TextStyle(
-        color: Color.fromARGB(255, 0, 0, 0),
-        fontFamily: 'me_quran',
-        fontSize: 20,
-        shadows: [
-          Shadow(
-            offset: Offset(.5, .5),
-            blurRadius: 1.0,
-            color: Colors.amberAccent,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _ArabicNumbers {
-  static String convert(Object value) {
-    assert(
-      value is int || value is String,
-      "The value object must be of type 'int' or 'String'.",
-    );
-
-    if (value is int) {
-      return _toArabicNumbers(value.toString());
-    } else {
-      return _toArabicNumbers(value as String);
-    }
-  }
-
-  static String _toArabicNumbers(String value) {
-    return value
-        .replaceAll('0', '٠')
-        .replaceAll('1', '١')
-        .replaceAll('2', '٢')
-        .replaceAll('3', '٣')
-        .replaceAll('4', '٤')
-        .replaceAll('5', '٥')
-        .replaceAll('6', '٦')
-        .replaceAll('7', '٧')
-        .replaceAll('8', '٨')
-        .replaceAll('9', '٩');
-  }
-}
-
-extension IntExtensions on int {
-  /// Converts English numbers to the Arabic numbers format
-  ///
-  ///
-  /// Example:
-  /// ```dart
-  /// final arabicNumbers = 0123456789.toArabicNumbers;
-  /// // result: ٠١٢٣٤٥٦٧٨٩
-  /// ```
-  String get toArabicNumbers {
-    return _ArabicNumbers.convert(this);
-  }
-}
-
-extension StringExtensions on String {
-  /// Converts English numbers to the Arabic numbers format
-  ///
-  ///
-  /// Example:
-  /// ```dart
-  /// final arabicNumbers = '0123456789'.toArabicNumbers;
-  /// // result: ٠١٢٣٤٥٦٧٨٩
-  /// ```
-  String get toArabicNumbers {
-    return _ArabicNumbers.convert(this);
   }
 }

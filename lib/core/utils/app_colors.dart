@@ -6,8 +6,9 @@ class AppColors {
   factory AppColors() => _instance;
 
   static const Color scaffoldBgColor = Color(0xffF9F9F9);
-  static const Color appBarBGColor = Color(0xff01807E);
+  static const Color primaryColor = Color(0xff01807E);
   static const Color hintColor = Color(0xff636363);
+  static const Color sliderColor = Color(0xff01807E);
   static const Color black = Colors.black;
   static const Color blue = Colors.blue;
   static const Color error = Colors.red;

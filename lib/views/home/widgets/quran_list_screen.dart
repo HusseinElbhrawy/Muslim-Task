@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:muslim_task/screens/cubit/quran_cubit.dart';
-import 'package:muslim_task/screens/widget/quran_item_widget.dart';
+import 'package:muslim_task/views/cubit/quran_cubit.dart';
+import 'package:muslim_task/views/home/widgets/quran_item_widget.dart';
 
 class QuranListScreen extends StatefulWidget {
   const QuranListScreen({super.key});

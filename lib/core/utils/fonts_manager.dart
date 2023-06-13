@@ -7,6 +7,8 @@ class AppFonts {
 
   static const String traditionalArabic = 'Traditional Arabic';
   static const String urwDinArabic = 'URW DIN Arabic';
+  static const String hafsSmart = 'HafsSmart';
+  static const String quran = 'Quran';
 }
 
 class AppFontsWeight {

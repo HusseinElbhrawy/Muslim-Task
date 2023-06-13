@@ -6,10 +6,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:muslim_task/core/utils/app_colors.dart';
 import 'package:muslim_task/core/utils/fonts_manager.dart';
-import 'package:muslim_task/screens/cubit/quran_cubit.dart';
+import 'package:muslim_task/views/cubit/quran_cubit.dart';
 
 import '../core/utils/constant.dart';
-import '../screens/home_screen.dart';
+import '../views/home/home_screen.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => QuranCubit(),
+      create: (context) => QuranCubit()..getSavedAyah(),
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         minTextAdapt: true,
@@ -42,6 +42,8 @@ class _MyAppState extends State<MyApp> {
             title: 'Muslim Task',
             theme: ThemeData(
               useMaterial3: true,
+
+              primaryColor: AppColors.primaryColor,
               hintColor: AppColors.hintColor,
               // indicatorColor: Colors.white,
               scaffoldBackgroundColor: AppColors.scaffoldBgColor,
@@ -61,10 +63,19 @@ class _MyAppState extends State<MyApp> {
                   fontWeight: AppFontsWeight.semiBold,
                 ),
               ),
+              iconTheme: const IconThemeData(
+                color: AppColors.white,
+              ),
               appBarTheme: AppBarTheme(
+                actionsIconTheme: const IconThemeData(
+                  color: AppColors.white,
+                ),
+                iconTheme: const IconThemeData(
+                  color: AppColors.white,
+                ),
                 elevation: 0.0,
                 // backgroundColor: AppColors.appBarBGColor,
-                color: AppColors.appBarBGColor,
+                color: AppColors.primaryColor,
                 centerTitle: true,
                 titleTextStyle: TextStyle(
                   color: AppColors.white,
@@ -101,8 +112,10 @@ class _MyAppState extends State<MyApp> {
                   fontWeight: AppFontsWeight.regular,
                 ),
               ),
-
-              primarySwatch: Colors.blue,
+              sliderTheme: const SliderThemeData(
+                thumbColor: AppColors.sliderColor,
+                activeTrackColor: AppColors.sliderColor,
+              ),
             ),
             localizationsDelegates: const [
               GlobalMaterialLocalizations.delegate,

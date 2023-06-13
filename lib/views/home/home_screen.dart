@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:muslim_task/core/utils/app_assets.dart';
-import 'package:muslim_task/screens/quran_list_screen.dart';
+import 'package:muslim_task/views/home/widgets/app_bar_bg_widget.dart';
+import 'package:muslim_task/views/home/widgets/book_mark_screen.dart';
+import 'package:muslim_task/views/home/widgets/quran_list_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -11,12 +12,7 @@ class HomeScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          flexibleSpace: FlexibleSpaceBar(
-            background: Image.asset(
-              AppImagesAssets.appBG,
-              fit: BoxFit.cover,
-            ),
-          ),
+          flexibleSpace: const AppBarBGWidget(),
           title: const Text('القرآن الكريم'),
           bottom: TabBar(
             enableFeedback: true,
@@ -32,7 +28,7 @@ class HomeScreen extends StatelessWidget {
           physics: BouncingScrollPhysics(),
           children: [
             QuranListScreen(),
-            SizedBox.shrink(),
+            BookMarkScreen(),
           ],
         ),
       ),
