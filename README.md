@@ -22,6 +22,30 @@ The "Muslim Task" project aims to provide various features related to Muslim pra
 
 To ensure optimal performance, especially when dealing with large Quran surahs like El-Baqara, the project may require further optimization. Implementing pagination can be an effective technique to handle these extensive datasets more efficiently. By loading a specific number of ayahs at a time, the app can reduce memory usage and improve overall performance.
 
+
+# Features
+The "Muslim Task" Flutter project includes the following features:
+
+1. Two Screens:
+
+- The first screen consists of two lists.
+- The first list displays all the surahs of the Holy Quran.
+- When a user taps on a specific surah, it opens another screen to display its ayahs.
+-  The second list displays the user's saved ayahs (bookmarks).
+
+2. Saving Ayahs:
+- Users can save ayahs to their bookmarks list by long-pressing on a specific ayah.
+- The bookmarked ayah is then added to the second list (bookmarks list).
+
+3. Reordering Bookmarks:
+
+- Users can rearrange their bookmarks list by dragging and moving the ayahs up or down.
+- This feature allows users to change the order of their bookmarked ayahs as desired.
+
+3. Quick Navigation:
+- In the bookmarks list, when a user taps on a bookmarked ayah, the app automatically navigates to the corresponding surah and focuses on the selected ayah.
+- This functionality enables users to quickly jump to a specific ayah within a surah.
+
 ## Mockup 
 
 ![Samsung Galaxy S20+ Presentation](https://github.com/HusseinElbhrawy/Muslim-Task/assets/64389727/ad03e1f4-7189-41d8-914a-87723d958336)
